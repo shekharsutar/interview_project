@@ -47,8 +47,8 @@ export class AppComponent implements OnInit {
   edit(id:number){
     this.id = id;
     this.api.get("name/" + id).subscribe((result: any) => {
-      this.formdata.patchValue({
-        name: result.name
+      this.formdata = new FormGroup({
+        name: new FormControl(result.name, Validators.compose([Validators.required]))
       });
       this.displaystyle = "block";
     })
